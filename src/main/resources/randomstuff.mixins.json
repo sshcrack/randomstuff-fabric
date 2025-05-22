@@ -3,7 +3,10 @@
   "minVersion": "0.8",
   "package": "me.sshcrack.randomstuff.mixin",
   "compatibilityLevel": "JAVA_17",
-  "mixins": [],
+  "mixins": [
+    "BlockMixin",
+    "TitleRenderMixin"
+  ],
   "client": [],
   "injectors": {
     "defaultRequire": 1

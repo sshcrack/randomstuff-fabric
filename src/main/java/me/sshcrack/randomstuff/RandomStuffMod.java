@@ -4,24 +4,21 @@ import me.sshcrack.randomstuff.entity.TPArrowEntity;
 import me.sshcrack.randomstuff.entity.TntArrowEntity;
 import me.sshcrack.randomstuff.item.TPArrowItem;
 import me.sshcrack.randomstuff.item.TntArrowItem;
+import me.sshcrack.randomstuff.util.test.events.EventBus;
+import me.sshcrack.randomstuff.util.test.events.TestEventHandler;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.SpawnGroup;
-import net.minecraft.item.BowItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.tag.ItemTags;
-import net.minecraft.tag.TagManagerLoader;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.stream.Collectors;
 
 public class RandomStuffMod implements ModInitializer {
 	// This logger is used to write text to the console and the log file.
@@ -29,6 +26,7 @@ public class RandomStuffMod implements ModInitializer {
 	// That way, it's clear which mod wrote info, warnings, and errors.
 	public static final String ModID = "randomstuff";
 	public static final Logger LOGGER = LoggerFactory.getLogger(ModID);
+	public static final EventBus EVENT_BUS = new EventBus();
 
 	public static final EntityType<TntArrowEntity> TntArrowEntityType = Registry.register(
 			Registry.ENTITY_TYPE,
@@ -60,8 +58,7 @@ public class RandomStuffMod implements ModInitializer {
 		// Proceed with mild caution.
 		Registry.register(Registry.ITEM, new Identifier(ModID, "tnt_arrow"), TntArrowItem);
 		Registry.register(Registry.ITEM, new Identifier(ModID, "tp_arrow"), TPArrowItem);
-
-		LOGGER.info("Hello Fabric world!");
-
+		EVENT_BUS.registerEventHandler(new TestEventHandler());
+		LOGGER.info("Checking if method exists");
 	}
 }

@@ -12,6 +12,7 @@ public class RandomStuffModClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
+        RandomStuffMod.LOGGER.info("Initializing client...");
         EntityRendererRegistry.register(RandomStuffMod.TntArrowEntityType, TntArrowEntityRenderer::new);
         EntityRendererRegistry.register(RandomStuffMod.TPArrowEntityType, TPArrowEntityRenderer::new);
     }
